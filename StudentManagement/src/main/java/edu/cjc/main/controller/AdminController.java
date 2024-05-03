@@ -1,5 +1,6 @@
 package edu.cjc.main.controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/enroll_student")
-	public String save(@ModelAttribute Student s) {
-		sc.save(s);
+	public String save(@ModelAttribute Student s,Model m) {
+		try {
+			sc.save(s);
+			
+		}catch(Exception e) {
+			m.addAttribute("msg", "emailid is alredy used ");
+		}
+		
+		List<Student>list = sc.findAll();
+		m.addAttribute("data",list);
 		return "adminscreen";
 	}
 }

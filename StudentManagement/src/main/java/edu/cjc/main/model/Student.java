@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
 public class Student {
@@ -11,9 +12,10 @@ public class Student {
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int studentId;
 private String studentFullName;
+@Column(unique = true)   
 private String studentEmail;
 private int studentAge;
-private String  studentCollageName;
+private String  studentCollegeName;
 private String studentCourse;
 private String batchNumber;
 private String batchMode;
@@ -44,12 +46,7 @@ public int getStudentAge() {
 public void setStudentAge(int studentAge) {
 	this.studentAge = studentAge;
 }
-public String getStudentCollageName() {
-	return studentCollageName;
-}
-public void setStudentCollageName(String studentCollageName) {
-	this.studentCollageName = studentCollageName;
-}
+
 public String getStudentCourse() {
 	return studentCourse;
 }
@@ -86,5 +83,10 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-
+public String getStudentCollegeName() {
+	return studentCollegeName;
+}
+public void setStudentCollegeName(String studentCollegeName) {
+	this.studentCollegeName = studentCollegeName;
+}
 }

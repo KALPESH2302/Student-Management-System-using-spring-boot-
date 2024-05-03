@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,9 @@ form {
 				</a>
 			</div>
 		</nav>
+		
 		<section class="vh-100 gradient-custom enroll mt-2" class="enroll" id="enroll">
+			<marquee><h1 style="color:red;">${msg}</h1></marquee>
 			<div class="container h-100">
 				<div class="row justify-content-center h-100 w-75">
 					<div class="col-12 col-lg-9 col-xl-7">
@@ -169,8 +172,8 @@ form {
 			</div>
 		</section>
 		<section class="view" style="height: 530px" id="view">
-			<<h1>View Student</h1>
-
+			<h1>View Student</h1>
+    
 			<h1 class="text-center">Student Details..!</h1>
 			<table class="table table-hover" style="font-size: small">
 				<thead>
@@ -213,19 +216,7 @@ form {
 					</c:forEach>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+			
 		</section>
 	</div>
 </body>
