@@ -53,10 +53,11 @@ form {
 		</nav>
 		
 		<section class="vh-100 gradient-custom enroll mt-2" class="enroll" id="enroll">
-			<marquee><h4 style="color:black;">${msg}</h4></marquee>
+			
 			<div class="container h-100">
 				<div class="row justify-content-center h-100 w-75">
 					<div class="col-12 col-lg-9 col-xl-7">
+					<h4 style="color:black;text-align:center;">${msg}</h4>
 						<div class="card shadow-2-strong card-registration mt-0"
 							style="border-radius: 15px;">
 							<div class="card-body mt-0">
