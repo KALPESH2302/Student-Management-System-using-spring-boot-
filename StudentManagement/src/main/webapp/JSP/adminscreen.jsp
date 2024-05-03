@@ -169,10 +169,63 @@ form {
 			</div>
 		</section>
 		<section class="view" style="height: 530px" id="view">
-			<h1>View Student</h1>
-			<table class="table table-bordered">
-  
-            </table>
+			<<h1>View Student</h1>
+
+			<h1 class="text-center">Student Details..!</h1>
+			<table class="table table-hover" style="font-size: small">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Student Name</th>
+						<th>Student Email</th>
+						<th>Age</th>
+						<th>Collage Name</th>
+						<th>Course Name</th>
+						<th>Bath No</th>
+						<th>Mode</th>
+						<th>Fess Recived</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${data}" var="s">
+						<tr>
+							<td>${s.studentId}</td>
+							<td>${s.studentFullName}</td>
+							<td>${s.studentEmail}</td>
+							<td>${s.studentAge}</td>
+							<td>${s.studentCollegeName}</td>
+							<td>${s.studentCourse}</td>
+							<td>${s.batchNumber}</td>
+							<td>${s.batchMode}</td>
+							<td>${s.feesPaid}</td>
+							<td>
+								<div class="btn-group btn-group-sm" role="group"
+									aria-label="...">
+									<button class="btn btn-outline-success">Pay-Fees</button>
+
+
+									<button class="btn btn-outline-primary">Shift-Batch</button>
+									<button class="btn btn-outline-danger">Remove</button>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 		</section>
 	</div>
 </body>
