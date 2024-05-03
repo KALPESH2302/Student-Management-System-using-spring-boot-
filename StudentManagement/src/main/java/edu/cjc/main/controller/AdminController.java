@@ -16,7 +16,7 @@ import edu.cjc.main.service.Service;
 
 @Controller
 public class AdminController {
-    
+    static int currentpage=0;
 	@Autowired
 	Service sc;
 	
@@ -30,9 +30,7 @@ public class AdminController {
 		username  = username.trim();
 		password = password.trim();
 		if(username.equals("admin") && password.equals("admin")) {
-			List<Student>list = sc.findAll();
-			m.addAttribute("data",list);
-			return "adminscreen";
+			return this.paging(0, m);
 		}
 		Student s = sc.findByUsernaemAndPassword(username, password);
          if(s != null){
@@ -51,10 +49,34 @@ public class AdminController {
 			
 		}catch(Exception e) {
 			m.addAttribute("msg", "emailid is alredy used ");
+			
 		}
 		
-		List<Student>list = sc.findAll();
+		return this.paging(0, m);
+	}
+	@RequestMapping("/pagging")
+	public String paging(@RequestParam("pageNo") int pageno,Model m) {
+		int pagesize=2;
+		int noofpage = sc.getTotalPages(pagesize);
+		System.out.println("noofpage : "+noofpage+"   "+"currentpage : "+currentpage);
+		if(pageno==-111) {
+			if(currentpage!=0) {
+				
+				currentpage = currentpage-1;
+			}	
+			
+		}else if(pageno==111) {
+			if(currentpage!=noofpage) {
+				
+				currentpage = currentpage+1;
+						
+		}	
+	   }else {
+		   currentpage=pageno;
+	   }
+		List<Student> list = sc.paging(currentpage, pagesize);
 		m.addAttribute("data",list);
+		m.addAttribute("totalpage",noofpage);
 		return "adminscreen";
 	}
 }

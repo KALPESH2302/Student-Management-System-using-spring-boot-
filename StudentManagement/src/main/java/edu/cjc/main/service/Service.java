@@ -8,5 +8,9 @@ public interface Service {
 	public void save(Student s);
 
 	public List<Student> findAll();
+	
+	public List<Student> paging(int pageno,int pagesize);
+
+	public int getTotalPages(int pageSize);
 
 }

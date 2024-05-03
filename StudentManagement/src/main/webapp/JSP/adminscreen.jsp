@@ -53,7 +53,7 @@ form {
 		</nav>
 		
 		<section class="vh-100 gradient-custom enroll mt-2" class="enroll" id="enroll">
-			<marquee><h1 style="color:red;">${msg}</h1></marquee>
+			<marquee><h4 style="color:black;">${msg}</h4></marquee>
 			<div class="container h-100">
 				<div class="row justify-content-center h-100 w-75">
 					<div class="col-12 col-lg-9 col-xl-7">
@@ -216,7 +216,19 @@ form {
 					</c:forEach>
 				</tbody>
 			</table>
-			
+			<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item ">
+      <a class="page-link" href="pagging?pageNo=-111" tabindex="-1">Previous</a>
+    </li>
+    
+    <li class="page-item"><a class="page-link" href="pagging?pageNo=0">1</a></li>
+    <li class="page-item"><a class="page-link" href="pagging?pageNo=1">2</a></li>
+    <li class="page-item">
+      <a class="page-link" href="pagging?pageNo=111">Next</a>
+    </li>
+  </ul>
+</nav>
 		</section>
 	</div>
 </body>
