@@ -1,5 +1,7 @@
 package edu.cjc.main.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
@@ -27,12 +29,14 @@ public class AdminController {
 		username  = username.trim();
 		password = password.trim();
 		if(username.equals("admin") && password.equals("admin")) {
+			List<Student>list = sc.findAll();
+			m.addAttribute("data",list);
 			return "adminscreen";
 		}
 		Student s = sc.findByUsernaemAndPassword(username, password);
          if(s != null){
 			
-			m.addAttribute("Student", s);
+			m.addAttribute("stu", s);
 			return "studentview";
 		}
 		m.addAttribute("login_fail", "Wrong username and password !!!");

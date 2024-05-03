@@ -1,4 +1,6 @@
 package edu.cjc.main.serviceimpl;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.cjc.main.model.Student;
@@ -18,6 +20,10 @@ public class ServiceImpl implements Service{
 	public void save(Student s) {
 		sr.save(s);
 		
+	}
+	@Override
+	public List<Student> findAll() {
+		return sr.findAll();
 	}
 
 }
