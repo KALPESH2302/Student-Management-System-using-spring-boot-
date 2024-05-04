@@ -31,7 +31,7 @@ public class ServiceImpl implements Service{
 	@Override
 	public List<Student> paging(int pageno, int pagesize) {
 		Pageable p = PageRequest.of(pageno, pagesize,Sort.by("studentId").ascending());
-        
+		
 		return sr.findAll(p).getContent();
 	}
 	
@@ -39,6 +39,16 @@ public class ServiceImpl implements Service{
 	public int getTotalPages(int pageSize) {
 	    int totalStudents = (int) sr.count();
 	    return (int) Math.ceil((double) totalStudents / pageSize);
+	   
+	}
+		
+	
+	@Override
+	public List<Student> findByBatch(String batchNumber) {
+		
+         Pageable p = PageRequest.of(0, 2,Sort.by("studentId").ascending());
+		 
+		return sr.findAllByBatchNumber(batchNumber,p).getContent();
 	}
 
 }

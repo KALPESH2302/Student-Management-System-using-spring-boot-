@@ -79,4 +79,12 @@ public class AdminController {
 		m.addAttribute("totalpage",noofpage);
 		return "adminscreen";
 	}
+	@RequestMapping("/search")
+	public String search(@RequestParam("batchNumber") String batchNumber,Model m) {
+		List<Student> list = sc.findByBatch(batchNumber);
+		m.addAttribute("data",list);
+		System.out.println(list);
+		return "adminscreen";
+	
+	}
 }

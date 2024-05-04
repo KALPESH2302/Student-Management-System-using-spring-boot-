@@ -13,4 +13,6 @@ public interface Service {
 
 	public int getTotalPages(int pageSize);
 
+	public List<Student> findByBatch(String batchNumber);
+
 }
