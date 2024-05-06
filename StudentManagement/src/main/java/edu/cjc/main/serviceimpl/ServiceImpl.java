@@ -1,6 +1,7 @@
 package edu.cjc.main.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -30,25 +31,55 @@ public class ServiceImpl implements Service{
 	}
 	@Override
 	public List<Student> paging(int pageno, int pagesize) {
-		Pageable p = PageRequest.of(pageno, pagesize,Sort.by("studentId").ascending());
-		
+		  Pageable p = PageRequest.of(pageno, pagesize,Sort.by("studentId").ascending());		
 		return sr.findAll(p).getContent();
 	}
 	
 	@Override
-	public int getTotalPages(int pageSize) {
-	    int totalStudents = (int) sr.count();
-	    return (int) Math.ceil((double) totalStudents / pageSize);
-	   
+	public int getTotalPages(int pageSize,String batchnumber) {
+		if(!batchnumber.equals("All")) {
+			return (int) Math.ceil((double) sr.TotalcountBybatchnumber(batchnumber)/ pageSize);
+		}
+	    return (int) Math.ceil((double) sr.Totalcount()/ pageSize);
 	}
-		
 	
 	@Override
-	public List<Student> findByBatch(String batchNumber) {
-		
-         Pageable p = PageRequest.of(0, 2,Sort.by("studentId").ascending());
-		 
-		return sr.findAllByBatchNumber(batchNumber,p).getContent();
+	public List<Student> findByBatch(String batchNumber, int pageNo, int pageSize) {
+		 Pageable p = PageRequest.of(pageNo,pageSize,Sort.by("studentId").ascending());		 
+			return sr.findAllByBatchNumber(batchNumber,p).getContent();
 	}
+	@Override
+	public void deleteById(int id) {
+		sr.deleteById(id);
+		
+	}
+	@Override
+	public Student getStudent(int id) {
+		Optional<Student> opt = sr.findById(id);
+		return opt.get();
+	}
+	@Override
+	public void updateStudentFess(int id, double ammount) {
+		Optional<Student> opt = sr.findById(id);
+	    Student st =  opt.get();
+	   double oldamount  = Double.parseDouble(st.getFeesPaid())+ammount;
+	    st.setFeesPaid(Double.toString(oldamount));
+	    sr.save(st);
+		
+	}
+	
+	@Override
+	public void updateBatch(int id, String batchNumber) {
+		Optional<Student> opt = sr.findById(id);
+	    Student st =  opt.get();
+		st.setBatchNumber(batchNumber);
+		sr.save(st);
+	}
+	
+	
+	
+		
+	
+	
 
 }

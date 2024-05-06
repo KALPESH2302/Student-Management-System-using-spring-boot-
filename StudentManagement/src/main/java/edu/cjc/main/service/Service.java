@@ -11,8 +11,17 @@ public interface Service {
 	
 	public List<Student> paging(int pageno,int pagesize);
 
-	public int getTotalPages(int pageSize);
+	public int getTotalPages(int pageSize, String currentbatchnumber);
 
-	public List<Student> findByBatch(String batchNumber);
+	List<Student> findByBatch(String batchNumber, int pageNo, int pageSize);
+
+	public void deleteById(int id);
+
+	public Student getStudent(int id);
+
+	public void updateStudentFess(int studentId, double ammount);
+
+
+	public void updateBatch(int studentid, String batchNumber);
 
 }
